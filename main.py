@@ -1,4 +1,5 @@
 import leahconfig
+import getcareer
 import traceback
 
 leah_api_key = None
@@ -14,3 +15,6 @@ if leah_api_key:
 else:
     print('Cannot proceed without an API key')
 
+career_response = getcareer.get_spittles_career(leah_api_key, 'Spittles-1502')
+print(career_response.url)
+print(career_response.text)
