@@ -4,8 +4,11 @@ from pyblizzard.diablo.constants import followers
 from pyblizzard.diablo.constants import artisans
 from pyblizzard.common.constants import regions
 from pyblizzard.common.constants import locales
+from pyblizzard.diablo.models.item import Item
+import jsonpickle
 
 import traceback
+import json
 
 test_api_key = None
 
@@ -18,27 +21,17 @@ except KeyError:
 if not test_api_key:
     print('Cannot proceed without an API key')
 
-career_response = diablo.get_career_profile(test_api_key, regions.US, 'Spittles-1502', locales.US)
-print(career_response.url)
-print(career_response.status_code)
-# print(career_response.text)
+career_profile = diablo.get_career_profile(test_api_key, regions.US, 'Spittles-1502', locales.US)
+print(jsonpickle.encode(career_profile, unpicklable=False))
 
-hero_response = diablo.get_hero_profile(test_api_key, regions.US, 'Spittles-1502', '94825371', locales.US)
-print(hero_response.url)
-print(hero_response.status_code)
-# print(hero_response.text)
+hero_profile = diablo.get_hero_profile(test_api_key, regions.US, 'Spittles-1502', '94825371', locales.US)
+print(jsonpickle.encode(hero_profile, unpicklable=False))
 
-item_response = diablo.get_item_data(test_api_key, regions.US, 'Crossbow_001', locales.US)
-print(item_response.url)
-print(item_response.status_code)
-# print(item_response.text)
+item = diablo.get_item_data(test_api_key, regions.US, 'Unique_CombatStaff_2H_001_x1', locales.US)
+print(jsonpickle.encode(item, unpicklable=False))
 
-follower_response = diablo.get_follower_data(test_api_key, regions.US, followers.ENCHANTRESS, locales.US)
-print(follower_response.url)
-print(follower_response.status_code)
-# print(follower_response.text)
+follower = diablo.get_follower_data(test_api_key, regions.US, followers.ENCHANTRESS, locales.US)
+print(jsonpickle.encode(follower, unpicklable=False))
 
-artisan_response = diablo.get_artisan_data(test_api_key, regions.US, artisans.MYSTIC, locales.US)
-print(artisan_response.url)
-print(artisan_response.status_code)
-# print(artisan_response.text)
+artisan = diablo.get_artisan_data(test_api_key, regions.US, artisans.MYSTIC, locales.US)
+print(jsonpickle.encode(artisan, unpicklable=False))
