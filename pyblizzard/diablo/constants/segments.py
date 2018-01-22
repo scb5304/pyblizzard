@@ -1,2 +1,8 @@
 GAME_NAME = 'd3'
-CAREER_PROFILE = 'profile'
+ENDPOINT_PROFILE = 'profile'
+ENDPOINT_DATA = 'data'
+
+HERO = 'hero'
+ITEM = 'item'
+FOLLOWER = 'follower'
+ARTISAN = 'artisan'
