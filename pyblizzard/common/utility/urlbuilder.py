@@ -1,14 +1,23 @@
-from pyblizzard.common.constants import url
+class UrlBuilder:
+    _segments = None
+    _use_initial_slash = False
+    _use_trailing_slash = False
 
+    def __init__(self, **kwargs):
+        self._segments = []
+        if 'use_initial_slash' in kwargs:
+            self._use_initial_slash = kwargs['use_initial_slash']
+        if 'use_trailing_slash' in kwargs:
+            self._use_trailing_slash = kwargs['use_trailing_slash']
 
-# Combines a region constant (subdomain) with the blizzard API path
-def build_base_path_from_region(region):
-    return 'https://{}.{}'.format(region, url.BLIZZARD_API)
+    def add(self, segment):
+        self._segments.append(segment)
+        return self
 
-
-# Concatenates the strings in the passed list with '/' separators. Does not end with a '/'.
-def build_url_from_segments(segments):
-    built_url = ''
-    for segment in segments:
-        built_url += segment + '/'
-    return built_url[:-1]
+    def build(self):
+        url = '/'.join(self._segments)
+        if self._use_initial_slash:
+            url = '/' + url
+        if self._use_trailing_slash:
+            url = url + '/'
+        return url
