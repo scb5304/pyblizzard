@@ -1,4 +1,4 @@
 # pyblizzard
-Bashing my head against Python and Blizzard's API
+[![Build Status](https://travis-ci.org/scb5304/pyblizzard.svg?branch=master)](https://travis-ci.org/scb5304/pyblizzard)
 
-I don't know what I'm doing.
+I almost know what I'm doing.
