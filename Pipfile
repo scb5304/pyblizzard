@@ -9,6 +9,7 @@ name = "pypi"
 
 requests = "*"
 jsonpickle = "*"
+pytest = "*"
 
 
 [dev-packages]
