@@ -1,14 +1,13 @@
-from sample.config import testconfig
-from pyblizzard.diablo import diablo
-from pyblizzard.diablo.constants import followers
-from pyblizzard.diablo.constants import artisans
-from pyblizzard.common.constants import regions
-from pyblizzard.common.constants import locales
-from pyblizzard.diablo.models.item import Item
+import traceback
+
 import jsonpickle
 
-import traceback
-import json
+from pyblizzard.common.constants import locales
+from pyblizzard.common.constants import regions
+from pyblizzard.diablo import diablo
+from pyblizzard.diablo.constants import artisans
+from pyblizzard.diablo.constants import followers
+from sample.config import testconfig
 
 test_api_key = None
 
