@@ -10,6 +10,8 @@ name = "pypi"
 requests = "*"
 jsonpickle = "*"
 pytest = "*"
+pytest-cov = "*"
+codacy-coverage = "*"
 
 
 [dev-packages]
