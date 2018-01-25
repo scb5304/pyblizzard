@@ -1,4 +1,8 @@
 class Artisan:
+    BLACKSMITH = 'blacksmith'
+    JEWELER = 'jeweler'
+    MYSTIC = 'mystic'
+
     def __init__(self, **kwargs):
         self.slug = kwargs.get('slug')
         self.name = kwargs.get('name')
