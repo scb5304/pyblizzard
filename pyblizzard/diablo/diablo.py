@@ -43,7 +43,7 @@ class Diablo:
     def set_timeout(self, timeout):
         self._timeout = timeout
 
-    def get_diablo_generic(self, path, class_):
+    def _get_diablo_generic(self, path, class_):
         full_path = UrlBuilder() \
             .add(self._base_diablo_path) \
             .add(path) \
@@ -57,7 +57,7 @@ class Diablo:
             .add(ENDPOINT_PROFILE) \
             .add(battle_tag) \
             .build()
-        return self.get_diablo_generic(career_profile_path, CareerProfile)
+        return self._get_diablo_generic(career_profile_path, CareerProfile)
 
     def get_hero_profile(self, battle_tag, hero_id):
         hero_profile_path = UrlBuilder() \
@@ -66,7 +66,7 @@ class Diablo:
             .add(HERO) \
             .add(hero_id) \
             .build()
-        return self.get_diablo_generic(hero_profile_path, HeroProfile)
+        return self._get_diablo_generic(hero_profile_path, HeroProfile)
 
     def get_item_data(self, item_identifier):
         item_data_path = UrlBuilder() \
@@ -74,7 +74,7 @@ class Diablo:
             .add(ITEM) \
             .add(item_identifier) \
             .build()
-        return self.get_diablo_generic(item_data_path, Item)
+        return self._get_diablo_generic(item_data_path, Item)
 
     def get_follower_data(self, follower):
         follower_path = UrlBuilder() \
@@ -82,7 +82,7 @@ class Diablo:
             .add(FOLLOWER) \
             .add(follower) \
             .build()
-        return self.get_diablo_generic(follower_path, Follower)
+        return self._get_diablo_generic(follower_path, Follower)
 
     def get_artisan_data(self, artisan):
         artisan_path = UrlBuilder() \
@@ -90,4 +90,4 @@ class Diablo:
             .add(ARTISAN) \
             .add(artisan) \
             .build()
-        return self.get_diablo_generic(artisan_path, Artisan)
+        return self._get_diablo_generic(artisan_path, Artisan)
