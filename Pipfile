@@ -12,6 +12,7 @@ jsonpickle = "*"
 pytest = "*"
 pytest-cov = "*"
 codacy-coverage = "*"
+responses = "*"
 
 
 [dev-packages]

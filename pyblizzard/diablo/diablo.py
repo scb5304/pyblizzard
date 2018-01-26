@@ -1,14 +1,17 @@
 import json
-
+import logging
 import requests
 
 from pyblizzard import pyblizzard
+from pyblizzard.common.utility import util
 from pyblizzard.common.utility.urlbuilder import UrlBuilder as UrlBuilder
 from pyblizzard.diablo.models.artisan import Artisan
 from pyblizzard.diablo.models.careerprofile import CareerProfile
 from pyblizzard.diablo.models.follower import Follower
 from pyblizzard.diablo.models.heroprofile import HeroProfile
 from pyblizzard.diablo.models.item import Item
+
+logging.basicConfig(level=logging.DEBUG)
 
 GAME_NAME = 'd3'
 
@@ -22,40 +25,39 @@ ARTISAN = 'artisan'
 
 
 class Diablo:
-    def __init__(self, api_key, region, locale):
-        self._api_key = api_key
-        self._region = region
-        self._locale = locale
-
-    @staticmethod
-    def build_base_path_from_region(region):
-        return 'https://{}.{}'.format(region, pyblizzard.BLIZZARD_API_ROOT)
-
-    @staticmethod
-    def build_diablo_path(region):
-        base_blizzard_path = Diablo.build_base_path_from_region(region)
+    def build_diablo_path(self):
+        base_blizzard_path = util.build_base_path_from_region(self._region)
         return UrlBuilder() \
             .add(base_blizzard_path) \
             .add(GAME_NAME) \
             .build()
 
-    def make_diablo_request(self, path):
-        base_diablo_path = self.build_diablo_path(self._region)
-        full_url = UrlBuilder() \
-            .add(base_diablo_path) \
+    def __init__(self, api_key, region, locale, timeout):
+        self._api_key = api_key
+        self._region = region
+        self._locale = locale
+        self._timeout = timeout
+        self._base_diablo_path = self.build_diablo_path()
+        self._params = {pyblizzard.QUERY_LOCALE: self._locale, pyblizzard.QUERY_API_KEY: self._api_key}
+
+    def set_timeout(self, timeout):
+        self._timeout = timeout
+
+    def _get_diablo_generic(self, path, class_):
+        full_path = UrlBuilder() \
+            .add(self._base_diablo_path) \
             .add(path) \
             .build()
-        print('Built URL for Diablo request: ', full_url)
-
-        return requests.get(full_url, params={pyblizzard.QUERY_LOCALE: self._locale, pyblizzard.QUERY_API_KEY: self._api_key})
+        response = requests.get(full_path, params=self._params, timeout=self._timeout)
+        model_object = class_(**json.loads(response.text))
+        return model_object
 
     def get_career_profile(self, battle_tag):
         career_profile_path = UrlBuilder(use_trailing_slash=True) \
             .add(ENDPOINT_PROFILE) \
             .add(battle_tag) \
             .build()
-        request_result = self.make_diablo_request(career_profile_path)
-        return CareerProfile(**json.loads(request_result.text))
+        return self._get_diablo_generic(career_profile_path, CareerProfile)
 
     def get_hero_profile(self, battle_tag, hero_id):
         hero_profile_path = UrlBuilder() \
@@ -64,8 +66,7 @@ class Diablo:
             .add(HERO) \
             .add(hero_id) \
             .build()
-        request_result = self.make_diablo_request(hero_profile_path)
-        return HeroProfile(**json.loads(request_result.text))
+        return self._get_diablo_generic(hero_profile_path, HeroProfile)
 
     def get_item_data(self, item_identifier):
         item_data_path = UrlBuilder() \
@@ -73,8 +74,7 @@ class Diablo:
             .add(ITEM) \
             .add(item_identifier) \
             .build()
-        request_result = self.make_diablo_request(item_data_path)
-        return Item(**json.loads(request_result.text))
+        return self._get_diablo_generic(item_data_path, Item)
 
     def get_follower_data(self, follower):
         follower_path = UrlBuilder() \
@@ -82,8 +82,7 @@ class Diablo:
             .add(FOLLOWER) \
             .add(follower) \
             .build()
-        request_result = self.make_diablo_request(follower_path)
-        return Follower(**json.loads(request_result.text))
+        return self._get_diablo_generic(follower_path, Follower)
 
     def get_artisan_data(self, artisan):
         artisan_path = UrlBuilder() \
@@ -91,5 +90,4 @@ class Diablo:
             .add(ARTISAN) \
             .add(artisan) \
             .build()
-        request_result = self.make_diablo_request(artisan_path)
-        return Artisan(**json.loads(request_result.text))
+        return self._get_diablo_generic(artisan_path, Artisan)
