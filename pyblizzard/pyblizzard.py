@@ -9,8 +9,8 @@ QUERY_API_KEY = 'apikey'
 
 class PyBlizzard:
     _api_key = 'NO_API_KEY_PROVIDED'
-    _region = Region.US.name
-    _locale = Locale.US.name
+    _region = Region.US.value
+    _locale = Locale.US.value
     _timeout = 10
 
     diablo = None

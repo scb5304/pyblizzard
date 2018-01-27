@@ -22,7 +22,7 @@ except KeyError:
 if not SAMPLE_API_KEY:
     print('Cannot proceed without an API key')
 
-py_blizzard = PyBlizzard(SAMPLE_API_KEY, Region.US.name, Locale.US.name)
+py_blizzard = PyBlizzard(SAMPLE_API_KEY, Region.US.value, Locale.US.value)
 
 career_profile = py_blizzard.diablo.get_career_profile(SAMPLE_BATTLE_TAG)
 print(jsonpickle.encode(career_profile, unpicklable=False))
