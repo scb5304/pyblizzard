@@ -63,32 +63,32 @@ class Starcraft2:
         return self._get_starcraft2_generic(profile_ladders_path)
 
     def get_profile_match_history(self, profile_id, profile_name):
-        profile_ladders_path = UrlBuilder() \
+        profile_match_history_path = UrlBuilder() \
             .add(ENDPOINT_PROFILE) \
             .add(profile_id) \
             .add(self._starcraft2_region) \
             .add(profile_name) \
             .add(PATH_MATCHES) \
             .build()
-        return self._get_starcraft2_generic(profile_ladders_path)
+        return self._get_starcraft2_generic(profile_match_history_path)
 
     def get_ladder(self, ladder_id):
-        follower_path = UrlBuilder() \
+        ladder_path = UrlBuilder() \
             .add(ENDPOINT_LADDER) \
             .add(ladder_id) \
             .build()
-        return self._get_starcraft2_generic(follower_path)
+        return self._get_starcraft2_generic(ladder_path)
 
     def get_achievements_data(self):
-        artisan_path = UrlBuilder() \
+        achievements_path = UrlBuilder() \
             .add(ENDPOINT_DATA) \
             .add(PATH_ACHIEVEMENTS) \
             .build()
-        return self._get_starcraft2_generic(artisan_path)
+        return self._get_starcraft2_generic(achievements_path)
 
     def get_rewards_data(self):
-        artisan_path = UrlBuilder() \
+        rewards_path = UrlBuilder() \
             .add(ENDPOINT_DATA) \
             .add(PATH_REWARDS) \
             .build()
-        return self._get_starcraft2_generic(artisan_path)
+        return self._get_starcraft2_generic(rewards_path)
