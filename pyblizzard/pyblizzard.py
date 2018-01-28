@@ -1,6 +1,7 @@
 from pyblizzard.common.enum.region import Region
 from pyblizzard.common.enum.locale import Locale
 from pyblizzard.diablo.diablo import Diablo
+from pyblizzard.starcraft2.starcraft2 import Starcraft2
 
 BLIZZARD_API_ROOT = 'api.battle.net'
 QUERY_LOCALE = 'locale'
@@ -14,13 +15,16 @@ class PyBlizzard:
     _timeout = 10
 
     diablo = None
+    starcraft2 = None
 
     def __init__(self, api_key, region, locale):
         self._api_key = api_key
         self._region = region
         self._locale = locale
         self.diablo = Diablo(api_key, region, locale, self._timeout)
+        self.starcraft2 = Starcraft2(api_key, region, locale, self._timeout)
 
     def set_timeout(self, timeout):
         self._timeout = timeout
         self.diablo.set_timeout(timeout)
+        self.starcraft2.set_timeout(timeout)
