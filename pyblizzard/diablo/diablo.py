@@ -6,13 +6,9 @@ from pyblizzard.common.utility import util
 from pyblizzard.common.utility.urlbuilder import UrlBuilder as UrlBuilder
 
 GAME_NAME = 'd3'
+
 ENDPOINT_PROFILE = 'profile'
 ENDPOINT_DATA = 'data'
-HERO = 'hero'
-ITEM = 'item'
-FOLLOWER = 'follower'
-ARTISAN = 'artisan'
-
 
 class Diablo:
     def build_diablo_path(self):
@@ -52,7 +48,7 @@ class Diablo:
         hero_profile_path = UrlBuilder() \
             .add(ENDPOINT_PROFILE) \
             .add(battle_tag) \
-            .add(HERO) \
+            .add('hero') \
             .add(hero_id) \
             .build()
         return self._get_diablo_generic(hero_profile_path)
@@ -60,7 +56,7 @@ class Diablo:
     def get_item_data(self, item_identifier):
         item_data_path = UrlBuilder() \
             .add(ENDPOINT_DATA) \
-            .add(ITEM) \
+            .add('item') \
             .add(item_identifier) \
             .build()
         return self._get_diablo_generic(item_data_path)
@@ -68,7 +64,7 @@ class Diablo:
     def get_follower_data(self, follower):
         follower_path = UrlBuilder() \
             .add(ENDPOINT_DATA) \
-            .add(FOLLOWER) \
+            .add('follower') \
             .add(follower) \
             .build()
         return self._get_diablo_generic(follower_path)
@@ -76,7 +72,7 @@ class Diablo:
     def get_artisan_data(self, artisan):
         artisan_path = UrlBuilder() \
             .add(ENDPOINT_DATA) \
-            .add(ARTISAN) \
+            .add('artisan') \
             .add(artisan) \
             .build()
         return self._get_diablo_generic(artisan_path)

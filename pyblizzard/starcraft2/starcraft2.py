@@ -6,14 +6,10 @@ from pyblizzard.common.utility import util
 from pyblizzard.common.utility.urlbuilder import UrlBuilder as UrlBuilder
 
 GAME_NAME = 'sc2'
+
 ENDPOINT_PROFILE = 'profile'
 ENDPOINT_LADDER = 'ladder'
 ENDPOINT_DATA = 'data'
-
-PATH_LADDERS = 'ladders'
-PATH_MATCHES = 'matches'
-PATH_ACHIEVEMENTS = 'achievements'
-PATH_REWARDS = 'rewards'
 
 class Starcraft2:
     def build_starcraft2_path(self):
@@ -58,7 +54,7 @@ class Starcraft2:
             .add(profile_id) \
             .add(self._starcraft2_region) \
             .add(profile_name) \
-            .add(PATH_LADDERS) \
+            .add('ladders') \
             .build()
         return self._get_starcraft2_generic(profile_ladders_path)
 
@@ -68,7 +64,7 @@ class Starcraft2:
             .add(profile_id) \
             .add(self._starcraft2_region) \
             .add(profile_name) \
-            .add(PATH_MATCHES) \
+            .add('matches') \
             .build()
         return self._get_starcraft2_generic(profile_match_history_path)
 
@@ -82,13 +78,13 @@ class Starcraft2:
     def get_achievements_data(self):
         achievements_path = UrlBuilder() \
             .add(ENDPOINT_DATA) \
-            .add(PATH_ACHIEVEMENTS) \
+            .add('achievements') \
             .build()
         return self._get_starcraft2_generic(achievements_path)
 
     def get_rewards_data(self):
         rewards_path = UrlBuilder() \
             .add(ENDPOINT_DATA) \
-            .add(PATH_REWARDS) \
+            .add('rewards') \
             .build()
         return self._get_starcraft2_generic(rewards_path)
