@@ -7,7 +7,7 @@ from pyblizzard.common.enum.locale import Locale
 from pyblizzard.common.enum.region import Region
 from pyblizzard.wow.enum.characterprofilefield import CharacterProfileField
 from pyblizzard.wow.enum.guildprofilefield import GuildProfileField
-from pyblizzard.wow.pvpbracket import PvpBracket
+from pyblizzard.wow.enum.pvpbracket import PvpBracket
 from pyblizzard.wow.wow import WorldOfWarcraft
 
 TEST_API_KEY = 'abc123'

@@ -1,13 +1,12 @@
 import jsonpickle
 import requests
 
-from pyblizzard import pyblizzard
 from pyblizzard.common.base_community_api import BaseCommunityApi
 from pyblizzard.common.utility import util
 from pyblizzard.common.utility.urlbuilder import UrlBuilder as UrlBuilder
 from pyblizzard.wow.enum.characterprofilefield import CharacterProfileField
 from pyblizzard.wow.enum.guildprofilefield import GuildProfileField
-from pyblizzard.wow.pvpbracket import PvpBracket
+from pyblizzard.wow.enum.pvpbracket import PvpBracket
 
 GAME_NAME = 'wow'
 

@@ -3,7 +3,7 @@ from pyblizzard.common.enum.region import Region
 from pyblizzard.common.utility import util
 from pyblizzard.pyblizzard import PyBlizzard
 from pyblizzard.wow.enum.characterprofilefield import CharacterProfileField
-from pyblizzard.wow.pvpbracket import PvpBracket
+from pyblizzard.wow.enum.pvpbracket import PvpBracket
 from sample.config import testconfig
 
 SAMPLE_WOW_ACHIEVEMENT_ID = '2144'
