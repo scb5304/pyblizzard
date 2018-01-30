@@ -1,5 +1,3 @@
-# pyblizzard
-
 <div>
   <p>
     <img src="https://i.imgur.com/jP6WNHR.png" />
