@@ -1,6 +1,5 @@
 import jsonpickle
-from pipenv.utils import requests
-
+import requests
 from pyblizzard.common.utility.urlbuilder import UrlBuilder
 
 
