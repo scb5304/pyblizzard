@@ -1,8 +1,4 @@
-import jsonpickle
-import requests
-
-from pyblizzard import pyblizzard
-from pyblizzard.common.utility import util
+from pyblizzard.common.base_community_api import BaseCommunityApi
 from pyblizzard.common.utility.urlbuilder import UrlBuilder as UrlBuilder
 
 GAME_NAME = 'd3'
@@ -10,39 +6,17 @@ GAME_NAME = 'd3'
 ENDPOINT_PROFILE = 'profile'
 ENDPOINT_DATA = 'data'
 
-class Diablo:
-    def build_diablo_path(self):
-        base_blizzard_path = util.build_base_path_from_region(self._region)
-        return UrlBuilder() \
-            .add(base_blizzard_path) \
-            .add(GAME_NAME) \
-            .build()
-
+class Diablo(BaseCommunityApi):
     def __init__(self, api_key, region, locale, timeout):
-        self._api_key = api_key
-        self._region = region
-        self._locale = locale
-        self._timeout = timeout
-        self._base_diablo_path = self.build_diablo_path()
-        self._params = {pyblizzard.QUERY_LOCALE: self._locale, pyblizzard.QUERY_API_KEY: self._api_key}
-
-    def set_timeout(self, timeout):
-        self._timeout = timeout
-
-    def _get_diablo_generic(self, path):
-        full_path = UrlBuilder() \
-            .add(self._base_diablo_path) \
-            .add(path) \
-            .build()
-        response = requests.get(full_path, params=self._params, timeout=self._timeout)
-        return jsonpickle.decode(response.text)
+        self._game = GAME_NAME
+        BaseCommunityApi.__init__(self, api_key, region, locale, timeout)
 
     def get_career_profile(self, battle_tag):
         career_profile_path = UrlBuilder(use_trailing_slash=True) \
             .add(ENDPOINT_PROFILE) \
             .add(battle_tag) \
             .build()
-        return self._get_diablo_generic(career_profile_path)
+        return self._get_pickled_response_generic(career_profile_path)
 
     def get_hero_profile(self, battle_tag, hero_id):
         hero_profile_path = UrlBuilder() \
@@ -51,7 +25,7 @@ class Diablo:
             .add('hero') \
             .add(hero_id) \
             .build()
-        return self._get_diablo_generic(hero_profile_path)
+        return self._get_pickled_response_generic(hero_profile_path)
 
     def get_item_data(self, item_identifier):
         item_data_path = UrlBuilder() \
@@ -59,7 +33,7 @@ class Diablo:
             .add('item') \
             .add(item_identifier) \
             .build()
-        return self._get_diablo_generic(item_data_path)
+        return self._get_pickled_response_generic(item_data_path)
 
     def get_follower_data(self, follower):
         follower_path = UrlBuilder() \
@@ -67,7 +41,7 @@ class Diablo:
             .add('follower') \
             .add(follower) \
             .build()
-        return self._get_diablo_generic(follower_path)
+        return self._get_pickled_response_generic(follower_path)
 
     def get_artisan_data(self, artisan):
         artisan_path = UrlBuilder() \
@@ -75,4 +49,4 @@ class Diablo:
             .add('artisan') \
             .add(artisan) \
             .build()
-        return self._get_diablo_generic(artisan_path)
+        return self._get_pickled_response_generic(artisan_path)

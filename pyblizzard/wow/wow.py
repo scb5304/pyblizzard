@@ -2,6 +2,7 @@ import jsonpickle
 import requests
 
 from pyblizzard import pyblizzard
+from pyblizzard.common.base_community_api import BaseCommunityApi
 from pyblizzard.common.utility import util
 from pyblizzard.common.utility.urlbuilder import UrlBuilder as UrlBuilder
 from pyblizzard.wow.enum.characterprofilefield import CharacterProfileField
@@ -29,37 +30,10 @@ ENDPOINT_DATA_RESOURCES = 'data'
 
 QUERY_FIELDS = 'fields'
 
-class WorldOfWarcraft:
-    def build_wow_path(self):
-        base_blizzard_path = util.build_base_path_from_region(self._region)
-        return UrlBuilder() \
-            .add(base_blizzard_path) \
-            .add(GAME_NAME) \
-            .build()
-
-    def init_params(self):
-        self._params = {pyblizzard.QUERY_LOCALE: self._locale, pyblizzard.QUERY_API_KEY: self._api_key}
-
+class WorldOfWarcraft(BaseCommunityApi):
     def __init__(self, api_key, region, locale, timeout):
-        self._api_key = api_key
-        self._region = region
-        self._locale = locale
-        self._timeout = timeout
-        self._base_wow_path = self.build_wow_path()
-        self._params = None
-        self.init_params()
-
-    def set_timeout(self, timeout):
-        self._timeout = timeout
-
-    def _get_wow_generic(self, path):
-        full_path = UrlBuilder() \
-            .add(self._base_wow_path) \
-            .add(path) \
-            .build()
-        response = requests.get(full_path, params=self._params, timeout=self._timeout)
-        self.init_params()
-        return jsonpickle.decode(response.text)
+        self._game = GAME_NAME
+        BaseCommunityApi.__init__(self, api_key, region, locale, timeout)
 
     # ACHIEVEMENT API
     def get_achievement(self, achievement_id):
@@ -67,7 +41,7 @@ class WorldOfWarcraft:
             .add(ENDPOINT_ACHIEVEMENT) \
             .add(achievement_id) \
             .build()
-        return self._get_wow_generic(achievement_path)
+        return self._get_pickled_response_generic(achievement_path)
 
     # AUCTION API
     def get_auction_data(self, realm):
@@ -78,7 +52,7 @@ class WorldOfWarcraft:
             .add('data') \
             .add(realm) \
             .build()
-        auction_initial_result = self._get_wow_generic(auction_path)
+        auction_initial_result = self._get_pickled_response_generic(auction_path)
         print(auction_initial_result)
         auction_initial_result_files = auction_initial_result['files']
 
@@ -93,14 +67,14 @@ class WorldOfWarcraft:
         bosses_path = UrlBuilder(use_trailing_slash=True) \
             .add(ENDPOINT_BOSS) \
             .build()
-        return self._get_wow_generic(bosses_path)
+        return self._get_pickled_response_generic(bosses_path)
 
     def get_boss(self, boss_id):
         boss_path = UrlBuilder() \
             .add(ENDPOINT_BOSS) \
             .add(boss_id) \
             .build()
-        return self._get_wow_generic(boss_path)
+        return self._get_pickled_response_generic(boss_path)
 
     # CHALLENGE MODE API
     def get_realm_challenge_leaderboard(self, realm):
@@ -108,14 +82,14 @@ class WorldOfWarcraft:
             .add(ENDPOINT_CHALLENGE) \
             .add(realm) \
             .build()
-        return self._get_wow_generic(realm_leaderboard_path)
+        return self._get_pickled_response_generic(realm_leaderboard_path)
 
     def get_region_challenge_leaderboard(self):
         realm_leaderboard_path = UrlBuilder() \
             .add(ENDPOINT_CHALLENGE) \
             .add('region') \
             .build()
-        return self._get_wow_generic(realm_leaderboard_path)
+        return self._get_pickled_response_generic(realm_leaderboard_path)
 
     # CHARACTER PROFILE API
     def get_character_profile(self, realm, character_name, *args):
@@ -129,7 +103,7 @@ class WorldOfWarcraft:
             .add(realm) \
             .add(character_name) \
             .build()
-        return self._get_wow_generic(character_profile_path)
+        return self._get_pickled_response_generic(character_profile_path)
 
     # GUILD PROFILE API
     def get_guild_profile(self, realm, guild_name, *args):
@@ -143,7 +117,7 @@ class WorldOfWarcraft:
             .add(realm) \
             .add(guild_name) \
             .build()
-        return self._get_wow_generic(guild_profile_path)
+        return self._get_pickled_response_generic(guild_profile_path)
 
     # ITEM API
     def get_item(self, item_id):
@@ -151,7 +125,7 @@ class WorldOfWarcraft:
             .add(ENDPOINT_ITEM) \
             .add(item_id) \
             .build()
-        return self._get_wow_generic(item_path)
+        return self._get_pickled_response_generic(item_path)
 
     def get_item_set(self, item_set_id):
         item_path = UrlBuilder() \
@@ -159,21 +133,21 @@ class WorldOfWarcraft:
             .add('set') \
             .add(item_set_id) \
             .build()
-        return self._get_wow_generic(item_path)
+        return self._get_pickled_response_generic(item_path)
 
     # MOUNT API
     def get_mounts(self):
         mounts_path = UrlBuilder(use_trailing_slash=True) \
             .add(ENDPOINT_MOUNT) \
             .build()
-        return self._get_wow_generic(mounts_path)
+        return self._get_pickled_response_generic(mounts_path)
 
     # PET API
     def get_pets(self):
         pets_path = UrlBuilder() \
             .add(ENDPOINT_PET) \
             .build()
-        return self._get_wow_generic(pets_path)
+        return self._get_pickled_response_generic(pets_path)
 
     def get_pet_ability(self, pet_ability_id):
         pet_ability_path = UrlBuilder() \
@@ -181,7 +155,7 @@ class WorldOfWarcraft:
             .add('ability') \
             .add(pet_ability_id) \
             .build()
-        return self._get_wow_generic(pet_ability_path)
+        return self._get_pickled_response_generic(pet_ability_path)
 
     def get_pet_species(self, pet_species_id):
         pet_species_path = UrlBuilder() \
@@ -189,7 +163,7 @@ class WorldOfWarcraft:
             .add('species') \
             .add(pet_species_id) \
             .build()
-        return self._get_wow_generic(pet_species_path)
+        return self._get_pickled_response_generic(pet_species_path)
 
     def get_pet_stats_by_species(self, pet_species_id):
         pet_species_path = UrlBuilder() \
@@ -197,7 +171,7 @@ class WorldOfWarcraft:
             .add('stats') \
             .add(pet_species_id) \
             .build()
-        return self._get_wow_generic(pet_species_path)
+        return self._get_pickled_response_generic(pet_species_path)
 
     # PVP API
     def get_pvp_leaderboard_for_bracket(self, pvp_bracket):
@@ -209,7 +183,7 @@ class WorldOfWarcraft:
                 .add(ENDPOINT_PVP) \
                 .add(pvp_bracket.value) \
                 .build()
-            return self._get_wow_generic(pvp_leaderboard_path)
+            return self._get_pickled_response_generic(pvp_leaderboard_path)
 
     # QUEST API
     def get_quest(self, quest_id):
@@ -217,7 +191,7 @@ class WorldOfWarcraft:
             .add(ENDPOINT_QUEST) \
             .add(quest_id) \
             .build()
-        return self._get_wow_generic(quest_path)
+        return self._get_pickled_response_generic(quest_path)
 
     # REALM STATUS API
     def get_realm_status(self, limit_to_realms=None):
@@ -227,7 +201,7 @@ class WorldOfWarcraft:
             .add(ENDPOINT_REALM_STATUS) \
             .add('status') \
             .build()
-        return self._get_wow_generic(realms_path)
+        return self._get_pickled_response_generic(realms_path)
 
     # RECIPE API
     def get_recipe(self, recipe_id):
@@ -235,7 +209,7 @@ class WorldOfWarcraft:
             .add(ENDPOINT_RECIPE) \
             .add(recipe_id) \
             .build()
-        return self._get_wow_generic(recipe_path)
+        return self._get_pickled_response_generic(recipe_path)
 
     # SPELL API
     def get_spell(self, spell_id):
@@ -243,21 +217,21 @@ class WorldOfWarcraft:
             .add(ENDPOINT_SPELL) \
             .add(spell_id) \
             .build()
-        return self._get_wow_generic(spell_path)
+        return self._get_pickled_response_generic(spell_path)
 
     # ZONE API
     def get_zones(self):
         zones_path = UrlBuilder(use_trailing_slash=True) \
             .add(ENDPOINT_ZONE) \
             .build()
-        return self._get_wow_generic(zones_path)
+        return self._get_pickled_response_generic(zones_path)
 
     def get_zone(self, zone_id):
         zone_path = UrlBuilder() \
             .add(ENDPOINT_ZONE) \
             .add(zone_id) \
             .build()
-        return self._get_wow_generic(zone_path)
+        return self._get_pickled_response_generic(zone_path)
 
     # DATA RESOURCES API
     def get_data_battlegroups(self):
@@ -265,7 +239,7 @@ class WorldOfWarcraft:
             .add(ENDPOINT_DATA_RESOURCES) \
             .add('battlegroups') \
             .build()
-        return self._get_wow_generic(battlegroups_path)
+        return self._get_pickled_response_generic(battlegroups_path)
 
     def get_data_character_races(self):
         character_races_path = UrlBuilder() \
@@ -273,7 +247,7 @@ class WorldOfWarcraft:
             .add('character') \
             .add('races') \
             .build()
-        return self._get_wow_generic(character_races_path)
+        return self._get_pickled_response_generic(character_races_path)
 
     def get_data_character_classes(self):
         character_classes_path = UrlBuilder() \
@@ -281,7 +255,7 @@ class WorldOfWarcraft:
             .add('character') \
             .add('classes') \
             .build()
-        return self._get_wow_generic(character_classes_path)
+        return self._get_pickled_response_generic(character_classes_path)
 
     def get_data_character_achievements(self):
         character_achievements_path = UrlBuilder() \
@@ -289,7 +263,7 @@ class WorldOfWarcraft:
             .add('character') \
             .add('achievements') \
             .build()
-        return self._get_wow_generic(character_achievements_path)
+        return self._get_pickled_response_generic(character_achievements_path)
 
     def get_data_guild_rewards(self):
         guild_rewards_path = UrlBuilder() \
@@ -297,7 +271,7 @@ class WorldOfWarcraft:
             .add('guild') \
             .add('rewards') \
             .build()
-        return self._get_wow_generic(guild_rewards_path)
+        return self._get_pickled_response_generic(guild_rewards_path)
 
     def get_data_guild_perks(self):
         guild_perks_path = UrlBuilder() \
@@ -305,7 +279,7 @@ class WorldOfWarcraft:
             .add('guild') \
             .add('perks') \
             .build()
-        return self._get_wow_generic(guild_perks_path)
+        return self._get_pickled_response_generic(guild_perks_path)
 
     def get_data_guild_achievements(self):
         guild_perks_path = UrlBuilder() \
@@ -313,7 +287,7 @@ class WorldOfWarcraft:
             .add('guild') \
             .add('achievements') \
             .build()
-        return self._get_wow_generic(guild_perks_path)
+        return self._get_pickled_response_generic(guild_perks_path)
 
     def get_data_item_classes(self):
         item_classes_path = UrlBuilder() \
@@ -321,14 +295,14 @@ class WorldOfWarcraft:
             .add('item') \
             .add('classes') \
             .build()
-        return self._get_wow_generic(item_classes_path)
+        return self._get_pickled_response_generic(item_classes_path)
 
     def get_data_talents(self):
         talents_path = UrlBuilder() \
             .add(ENDPOINT_DATA_RESOURCES) \
             .add('talents') \
             .build()
-        return self._get_wow_generic(talents_path)
+        return self._get_pickled_response_generic(talents_path)
 
     def get_data_pet_types(self):
         pet_types_path = UrlBuilder() \
@@ -336,4 +310,4 @@ class WorldOfWarcraft:
             .add('pet') \
             .add('types') \
             .build()
-        return self._get_wow_generic(pet_types_path)
+        return self._get_pickled_response_generic(pet_types_path)

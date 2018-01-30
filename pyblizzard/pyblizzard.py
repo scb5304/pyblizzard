@@ -1,12 +1,8 @@
-from pyblizzard.common.enum.region import Region
 from pyblizzard.common.enum.locale import Locale
+from pyblizzard.common.enum.region import Region
 from pyblizzard.diablo.diablo import Diablo
 from pyblizzard.starcraft2.starcraft2 import Starcraft2
 from pyblizzard.wow.wow import WorldOfWarcraft
-
-BLIZZARD_API_ROOT = 'api.battle.net'
-QUERY_LOCALE = 'locale'
-QUERY_API_KEY = 'apikey'
 
 
 class PyBlizzard:
