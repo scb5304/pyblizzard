@@ -9,7 +9,7 @@ setup(
     author='Steven Brown',
     author_email='scb5304@gmail.com',
     url='https://github.com/scb5304/pyblizzard',
-    download_url='https://github.com/scb5304/pyblizzard/archive/v1.0-beta.tar.gz',
+    download_url='https://github.com/scb5304/pyblizzard/archive/v1.0-beta.1.tar.gz',
     keywords=['python', 'python3', 'blizzard', 'api', 'wrapper', 'battle', 'battle.net'],
     classifiers=[],
 )
