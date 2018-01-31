@@ -1,8 +1,9 @@
 from distutils.core import setup
+from setuptools import find_packages
 
 setup(
     name='pyblizzard',
-    packages=['pyblizzard'],
+    packages=find_packages(exclude=['tests']),
     version='1.0',  # Ideally should be same as your GitHub release tag varsion
     description='Python3 wrapper for the Battle.net Community APIs.',
     author='Steven Brown',

@@ -6,3 +6,5 @@ __pycache__/
 .pypirc
 coverage.xml
 config.ini
+MANIFEST
+*.tar.gz

@@ -1,0 +1,15 @@
+Releasing / uploading:
+https://www.codementor.io/arpitbhayani/host-your-python-package-using-github-on-pypi-du107t7ku
+Store .pypirc file temporarily in user directory to allow upload commands to work on Windows.
+
+Adjust for pypi legacy migration:
+https://mail.python.org/pipermail/distutils-sig/2017-June/030766.html
+https://packaging.python.org/guides/migrating-to-pypi-org/
+https://packaging.python.org/tutorials/distributing-packages/#setup-args
+
+Ignored question about trailing slashes randomly required in requests:
+https://us.battle.net/forums/en/bnet/topic/20761007121
+
+Running pytest while avoiding 'no module named ...':
+'python -m pytest'
+https://docs.pytest.org/en/latest/usage.html (New in version 2.0)
