@@ -12,7 +12,7 @@ SAMPLE_STARCRAFT2_LADDER_ID = '194163'
 def main():
     sample_api_key = testconfig.get_api_key()
 
-    py_blizzard = PyBlizzard(sample_api_key, Region.US.value, Locale.US.value)
+    py_blizzard = PyBlizzard(sample_api_key, Region.US, Locale.US)
 
     print('Getting profile...')
     profile = py_blizzard.starcraft2.get_profile(SAMPLE_STARCRAFT2_PROFILE_ID, SAMPLE_STARCRAFT2_PROFILE_NAME)

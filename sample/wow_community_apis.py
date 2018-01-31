@@ -24,7 +24,7 @@ SAMPLE_WOW_ZONE_ID = '4131'
 def main():
     sample_api_key = testconfig.get_api_key()
 
-    py_blizzard = PyBlizzard(sample_api_key, Region.US.value, Locale.US.value)
+    py_blizzard = PyBlizzard(sample_api_key, Region.US, Locale.US)
 
     # ACHIEVEMENT
     print('Getting achievement....')

@@ -14,7 +14,7 @@ SAMPLE_DIABLO_ITEM_ID = 'Unique_CombatStaff_2H_001_x1'
 def main():
     sample_api_key = testconfig.get_api_key()
 
-    py_blizzard = PyBlizzard(sample_api_key, Region.US.value, Locale.US.value)
+    py_blizzard = PyBlizzard(sample_api_key, Region.US, Locale.US)
 
     print('Getting career profile...')
     career_profile = py_blizzard.diablo.get_career_profile(SAMPLE_DIABLO_BATTLE_TAG)
@@ -29,11 +29,11 @@ def main():
     util.print_response_object(item)
 
     print('Getting follower...')
-    follower = py_blizzard.diablo.get_follower_data(Follower.ENCHANTRESS.value)
+    follower = py_blizzard.diablo.get_follower_data(Follower.ENCHANTRESS)
     util.print_response_object(follower)
 
     print('Getting artisan...')
-    artisan = py_blizzard.diablo.get_artisan_data(Artisan.MYSTIC.value)
+    artisan = py_blizzard.diablo.get_artisan_data(Artisan.MYSTIC)
     util.print_response_object(artisan)
 
 

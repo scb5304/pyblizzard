@@ -9,7 +9,7 @@ class BaseCommunityApi:
     QUERY_API_KEY = 'apikey'
 
     def _init_params(self):
-        self._params = {self.QUERY_LOCALE: self._locale, self.QUERY_API_KEY: self._api_key}
+        self._params = {self.QUERY_LOCALE: self._locale.value, self.QUERY_API_KEY: self._api_key}
 
     def __init__(self, api_key, region, locale, timeout):
         self._api_key = api_key
@@ -24,7 +24,7 @@ class BaseCommunityApi:
         self._timeout = timeout
 
     def build_base_api_path(self):
-        base_blizzard_path = 'https://{}.{}'.format(self._region, self.BLIZZARD_API_ROOT)
+        base_blizzard_path = 'https://{}.{}'.format(self._region.value, self.BLIZZARD_API_ROOT)
         return UrlBuilder() \
             .add(base_blizzard_path) \
             .add(self._game) \

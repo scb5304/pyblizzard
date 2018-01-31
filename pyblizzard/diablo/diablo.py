@@ -39,7 +39,7 @@ class Diablo(BaseCommunityApi):
         follower_path = UrlBuilder() \
             .add(ENDPOINT_DATA) \
             .add('follower') \
-            .add(follower) \
+            .add(follower.value) \
             .build()
         return self._get_pickled_response_generic(follower_path)
 
@@ -47,6 +47,6 @@ class Diablo(BaseCommunityApi):
         artisan_path = UrlBuilder() \
             .add(ENDPOINT_DATA) \
             .add('artisan') \
-            .add(artisan) \
+            .add(artisan.value) \
             .build()
         return self._get_pickled_response_generic(artisan_path)

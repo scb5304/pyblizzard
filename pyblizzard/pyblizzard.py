@@ -7,8 +7,8 @@ from pyblizzard.wow.wow import WorldOfWarcraft
 
 class PyBlizzard:
     _api_key = 'NO_API_KEY_PROVIDED'
-    _region = Region.US.value
-    _locale = Locale.US.value
+    _region = Region.US
+    _locale = Locale.US
     _timeout = 60
 
     diablo = None
