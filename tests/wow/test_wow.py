@@ -11,8 +11,8 @@ from pyblizzard.wow.enum.pvpbracket import PvpBracket
 from pyblizzard.wow.wow import WorldOfWarcraft
 
 TEST_API_KEY = 'abc123'
-TEST_REGION = Region.US.value
-TEST_LOCALE = Locale.US.value
+TEST_REGION = Region.US
+TEST_LOCALE = Locale.US
 TEST_TIMEOUT = 1.0
 
 TEST_WOW_ACHIEVEMENT_ID = '2144'

@@ -6,17 +6,19 @@ import responses
 from pyblizzard.common.enum.locale import Locale
 from pyblizzard.common.enum.region import Region
 from pyblizzard.diablo.diablo import Diablo
+from pyblizzard.diablo.enum.artisan import Artisan
+from pyblizzard.diablo.enum.follower import Follower
 
 TEST_API_KEY = 'abc123'
-TEST_REGION = Region.US.value
-TEST_LOCALE = Locale.US.value
+TEST_REGION = Region.US
+TEST_LOCALE = Locale.US
 TEST_TIMEOUT = 1.0
 
 TEST_ITEM_ID = 'Unique_CombatStaff_2H_001_x1'
 TEST_BATTLE_TAG = 'Spittles-1502'
 TEST_HERO_ID = '94825371'
-TEST_FOLLOWER = 'enchantress'
-TEST_ARTISAN = 'blacksmith'
+TEST_FOLLOWER = Follower.ENCHANTRESS
+TEST_ARTISAN = Artisan.BLACKSMITH
 
 @pytest.fixture()
 def stub_request_empty_json():

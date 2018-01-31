@@ -8,8 +8,8 @@ from pyblizzard.common.enum.region import Region
 from pyblizzard.starcraft2.starcraft2 import Starcraft2
 
 TEST_API_KEY = 'abc123'
-TEST_REGION = Region.US.value
-TEST_LOCALE = Locale.US.value
+TEST_REGION = Region.US
+TEST_LOCALE = Locale.US
 TEST_TIMEOUT = 1.0
 
 TEST_STARCRAFT2_PROFILE_ID = '2137104'

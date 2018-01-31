@@ -44,6 +44,7 @@ class Diablo(BaseCommunityApi):
         return self._get_pickled_response_generic(follower_path)
 
     def get_artisan_data(self, artisan):
+        print(artisan)
         artisan_path = UrlBuilder() \
             .add(ENDPOINT_DATA) \
             .add('artisan') \
