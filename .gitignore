@@ -3,5 +3,6 @@ __pycache__/
 .idea/
 .cache/
 .coverage
+.pypirc
 coverage.xml
 config.ini
