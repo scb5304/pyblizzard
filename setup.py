@@ -1,4 +1,7 @@
-from distutils.core import setup
+try:
+    from setuptools import setup
+except ImportError:
+    from distutils.core import setup
 from setuptools import find_packages
 
 setup(
@@ -11,5 +14,7 @@ setup(
     url='https://github.com/scb5304/pyblizzard',
     download_url='https://github.com/scb5304/pyblizzard/archive/v1.0-beta.1.tar.gz',
     keywords=['python', 'python3', 'blizzard', 'api', 'wrapper', 'battle', 'battle.net'],
+    install_requires=['jsonpickle', 'requests'],
+    setup_requires=['jsonpickle', 'requests'],
     classifiers=[],
 )
