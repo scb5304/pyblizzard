@@ -15,11 +15,10 @@ pyblizzard is a simple, object-oriented `Battle.net API <https://dev.battle.net/
 
 Installation
 ---------------
-...probably something like this if I figure out how that all works.
 
 .. code-block:: python
 
-  pip install pyblizzard
+  >>> pip install pyblizzard
 
 
 Usage
