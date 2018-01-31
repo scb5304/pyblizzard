@@ -4,7 +4,7 @@ from setuptools import find_packages
 setup(
     name='pyblizzard',
     packages=find_packages(exclude=['tests']),
-    version='1.0',  # Ideally should be same as your GitHub release tag varsion
+    version='v1.0-beta.1',
     description='Python3 wrapper for the Battle.net Community APIs.',
     author='Steven Brown',
     author_email='scb5304@gmail.com',
