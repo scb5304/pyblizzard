@@ -1,8 +1,4 @@
-<div>
-  <p>
-    <img src="https://i.imgur.com/jP6WNHR.png" />
-  </p>
-</div>
+.. image:: https://i.imgur.com/jP6WNHR.png
 
 .. image:: https://travis-ci.org/scb5304/pyblizzard.svg?branch=master
     :target: https://travis-ci.org/scb5304/pyblizzard
@@ -15,11 +11,11 @@
 
 About
 ---------------
-pyblizzard is a simple, object-oriented [Battle.net API](https://dev.battle.net/io-docs) wrapper in Python with 100% coverage of the Community APIs. Each request returns a Python object created from the JSON response using [jsonpickle](https://jsonpickle.github.io/).
+pyblizzard is a simple, object-oriented `Battle.net API <https://dev.battle.net/io-docs>`_ wrapper in Python with 100% coverage of the Community APIs. Each  `request <https://github.com/requests/requests>`_  returns a Python object created from the JSON response using `jsonpickle <https://jsonpickle.github.io/>`_.
 
 Installation
 ---------------
-probably something like this if I figure out how that all works.
+...probably something like this if I figure out how that all works.
 
 .. code-block:: python
 
