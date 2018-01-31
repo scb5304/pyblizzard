@@ -3,7 +3,7 @@ from pyblizzard.common.enum.region import Region
 from pyblizzard.common.utility import util
 
 from pyblizzard.pyblizzard import PyBlizzard
-from sample.config import testconfig
+from samples.config import testconfig
 
 SAMPLE_STARCRAFT2_PROFILE_ID = '2137104'
 SAMPLE_STARCRAFT2_PROFILE_NAME = 'skt'

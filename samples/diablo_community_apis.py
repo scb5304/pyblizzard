@@ -4,7 +4,7 @@ from pyblizzard.common.utility import util
 from pyblizzard.diablo.enum.artisan import Artisan
 from pyblizzard.diablo.enum.follower import Follower
 from pyblizzard.pyblizzard import PyBlizzard
-from sample.config import testconfig
+from samples.config import testconfig
 
 SAMPLE_DIABLO_BATTLE_TAG = 'Spittles-1502'
 SAMPLE_DIABLO_HERO_ID = '94825371'

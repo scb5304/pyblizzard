@@ -4,7 +4,7 @@ from pyblizzard.common.utility import util
 from pyblizzard.pyblizzard import PyBlizzard
 from pyblizzard.wow.enum.characterprofilefield import CharacterProfileField
 from pyblizzard.wow.enum.pvpbracket import PvpBracket
-from sample.config import testconfig
+from samples.config import testconfig
 
 SAMPLE_WOW_ACHIEVEMENT_ID = '2144'
 SAMPLE_WOW_GUILD_NAME = 'Basement Dwellers'
