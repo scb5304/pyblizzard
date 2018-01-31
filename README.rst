@@ -18,7 +18,7 @@ Installation
 
 .. code-block:: python
 
-  pip install pyblizzard
+  >>> pip install pyblizzard
 
 
 Usage
