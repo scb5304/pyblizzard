@@ -11,7 +11,7 @@
 
 About
 ---------------
-pyblizzard is a simple, object-oriented `Battle.net API <https://dev.battle.net/io-docs>`_ wrapper in Python with 100% coverage of the Community APIs. Each  `request <https://github.com/requests/requests>`_  returns a Python object created from the JSON response using `jsonpickle <https://jsonpickle.github.io/>`_.
+pyblizzard is a simple, object-oriented `Battle.net API <https://dev.battle.net/io-docs>`_ wrapper written in Python that covers a majority of the Community APIs (the China-specific Community APIs not yet covered). Each  `request <https://github.com/requests/requests>`_  returns a Python object created from the JSON response using `jsonpickle <https://jsonpickle.github.io/>`_.
 
 Installation
 ---------------
